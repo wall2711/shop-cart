@@ -2,31 +2,25 @@
     session_start();
     require_once('dataset.php');
     
-    // session total amount must be reinitialize to 0 everytime this page loads so that our computations will work
+    
     $_SESSION['totalAmount'] = 0;
 
     if(isset($_POST['btnUpdate'])) {
         
-        // fetch all the input data and store them on variables
-        // these variables will become arrays since the input types are declared as arrays
+       
         $cartKeys = $_POST['hdnKey'];
         $cartSize = $_POST['hdnSize'];
         $cartQuantities = $_POST['txtQuantity'];
 
-        // test if all of the array variables are set, this is just a precaution and a good programming practice        
+           
         if(isset($cartKeys) && isset($cartSize) && isset($cartQuantities)) {
-            // when we update we should consider that the value of session total quantity will change
-            // with that we should reinitialize its value to 0 to prepare it for the computation below
-
+        
             $_SESSION['totalQuantity'] = 0;
 
             foreach($cartKeys as $index => $key) {
-                // $index is the index of the form array element and has nothing to do with the flow of our program except to extract the values from these arrays
-                // $key is the index of the item from the arrProducts
-                // we are simply performing a loop and updates the quantity of the session cartItems based on the coordinates that are dynamically produced using this loop
+              
                 $_SESSION['cartItems'][$key][$cartSize[$index]] = $cartQuantities[$index];
 
-                // then we re compute the value of the session totalQuantity
                 $_SESSION['totalQuantity'] += $cartQuantities[$index];
             }
         }
@@ -78,27 +72,19 @@
                         </thead>
                         <tbody>
                             
-                            <!-- this is the part where we assemble our cart intl_get_error_message
-                            we started it by testing out if the cartItems is set, meaning if the user has already purchased something
-                            then we perfom a nested foreach in order to extract all the values we need from our session cartItems
-                            remember that the structure of our session cartitems goes like this
-                            $_SESSION['cartItems'][key][size] = quantity -->
-
+                       
                             <?php if(isset($_SESSION['cartItems'])): ?>
                                 <?php foreach($_SESSION['cartItems'] as $key => $value): ?>
                                     <?php foreach($value as $size => $quantity): ?>
 
-                                        <!-- this is where we recompute our sesstion totalamount value based on the price of the selected item multiplied by the number of purchased item -->
                                         <?php $_SESSION['totalAmount'] += $arrProducts[$key]['price'] * $quantity; ?>                                        
-                                        
-                                        <!-- following are just print outs of values and components that should appear in the cart table -->
+                                     
                                         <tr>                                        
                                             <td><img src="img/<?php echo $arrProducts[$key]['photo1']; ?>" class="img-thumbnail" style="height: 50px;"></td>
                                             <td><?php echo $arrProducts[$key]['name']; ?></td>
                                             <td><?php echo $size; ?></td>
                                             <td>
-                                                <!-- we need to create three input elements so that we can perform updates on the number of purchases
-                                                each input elements are responsible to supply the necessary values (key, size and quantity) in order for the update to work -->
+                                             
                                                 <input type="hidden" name="hdnKey[]" value="<?php echo $key; ?>">
                                                 <input type="hidden" name="hdnSize[]" value="<?php echo $size; ?>">
                                                 <input type="number" name="txtQuantity[]" value="<?php echo $quantity; ?>" class="form-control text-center" min="1" max="100" required style="width: 150px;">
@@ -106,7 +92,7 @@
                                             <td>₱ <?php echo number_format($arrProducts[$key]['price'], 2); ?></td>
                                             <td>₱ <?php echo number_format($arrProducts[$key]['price'] * $quantity, 2); ?></td>
                                             
-                                            <!-- the remove link will contain also the same three get variable parameters in order for our product delition to work -->
+                                        
                                             <td><a href="remove-confirm.php?<?php echo 'k=' . $key . '&s=' . $size . '&q=' . $quantity; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>

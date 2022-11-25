@@ -67,27 +67,15 @@
                         <input type="hidden" name="hdnKey" value="<?php echo $_GET['k']; ?>">
                         <h3 class="title">Select Size:</h3>
                         <input type="radio" name="radSize" id="radXS" value="7">
-                        <label for="radXS" class="pr-3">US 7</label>
+                        <label for="radXS" class="pr-3">XS</label>
                         <input type="radio" name="radSize" id="radSM" value="7.5">
-                        <label for="radSM" class="pr-3">US 7.5</label>
+                        <label for="radSM" class="pr-3">SM</label>
                         <input type="radio" name="radSize" id="radMD" value="8">
-                        <label for="radMD" class="pr-3">US 8</label>
+                        <label for="radMD" class="pr-3">MD</label>
                         <input type="radio" name="radSize" id="radLG" value="8.5">
-                        <label for="radLG" class="pr-3">US 8.5</label>
+                        <label for="radLG" class="pr-3">LG</label>
                         <input type="radio" name="radSize" id="radXL" value="9">
-                        <label for="radXL" class="pr-3">US 9</label> 
-                        <input type="radio" name="radSize" id="radXL" value="9.5">
-                        <label for="radXL" class="pr-3">US 9.5</label> 
-                        <input type="radio" name="radSize" id="radXL" value="10">
-                        <label for="radXL" class="pr-3">US 10</label>
-                        <input type="radio" name="radSize" id="radXL" value="10.5">
-                        <label for="radXL" class="pr-3">US 10.5</label>       
-                        <input type="radio" name="radSize" id="radXL" value="11">
-                        <label for="radXL" class="pr-3">US 11</label> <br>
-                        <input type="radio" name="radSize" id="radXL" value="11.5">
-                        <label for="radXL" class="pr-3">US 11.5</label>     
-                        <input type="radio" name="radSize" id="radXL" value="12">
-                        <label for="radXL" class="pr-3">US 12</label>          
+                        <label for="radXL" class="pr-3">XL</label> 
                         <hr>
                         <h3 class="title">Enter Quantity:</h3>
                         <input type="number" name="txtQuantity" id="txtQuantity" class="form-control" placeholder="0" min="1" max="100" required>
